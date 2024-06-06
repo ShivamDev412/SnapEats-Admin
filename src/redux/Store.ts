@@ -3,14 +3,13 @@ import logger from "redux-logger";
 import rootReducer from "./RootReducer";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
-import { version } from "react";
+import { apiSlice } from "./slice/api/apiSlice";
 
 const persistConfig = {
   key: "root",
   storage,
   version: 1,
 };
-
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
@@ -18,7 +17,7 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat(logger),
+    }).concat(logger, apiSlice.middleware),
   devTools: import.meta.env.VITE_NODE_ENV !== "production",
 });
 
