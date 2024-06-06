@@ -12,12 +12,16 @@ const Aside = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (socket === null) return;
+    socket.on('connect', () => {
+      console.log('Connected to Socket.IO server');
+    });
 
+    socket.on('disconnect', () => {
+      console.log('Disconnected from Socket.IO server');
+    });
     socket.on(SOCKET_EVENT.NEW_STORE_REQUEST, (data) => {
       dispatch(setStoreRequestCount());
-      Toast(
-        `New store registration request from ${data.userName} for ${data.storeName}`
-      );
+      Toast(`New store registration request from ${data.userName} for ${data.storeName}`);
     });
 
     return () => {
@@ -25,6 +29,21 @@ const Aside = () => {
     };
   }, [dispatch]);
 
+  // useEffect(() => {
+  //   if (socket === null) return;
+  //   socket.on(SOCKET_EVENT.NEW_STORE_REQUEST, (data) => {
+  //     debugger;
+  //     dispatch(setStoreRequestCount());
+  //     Toast(
+  //       `New store registration request from ${data.userName} for ${data.storeName}`,
+  //       "info"
+  //     );
+  //   });
+
+  //   return () => {
+  //     socket.off(SOCKET_EVENT.NEW_STORE_REQUEST);
+  //   };
+  // }, [dispatch]);
   return (
     <aside className="w-2/12 bg-zinc-950 p-6 flex flex-col justify-between">
       <NavLinks />
