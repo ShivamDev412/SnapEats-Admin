@@ -1,4 +1,4 @@
-import { CircularProgress, FormControl } from "@mui/material";
+import { FormControl } from "@mui/material";
 import Button from "@/components/Button";
 import AuthWrapper from "@/Wrappers/AuthWrapper";
 import { InputField } from "@/components/Input";
@@ -19,9 +19,7 @@ const Login = () => {
         <div className="h-auto w-[2.5in] mx-auto">
           <img src={Logo} alt="brand_logo" className="w-full h-full" />
         </div>
-        <h2 className="text-4xl text-center font-semibold mb-5">
-          Admin Log In
-        </h2>
+        <h2 className="text-4xl text-center font-semibold mb-5">Log In</h2>
         <InputField
           id={"email"}
           label={"Email"}
@@ -40,11 +38,7 @@ const Login = () => {
         />
 
         <Button type="submit" variant="contained" disabled={isLoading}>
-          {isLoading ? (
-            <CircularProgress size={28} color="secondary" thickness={5} />
-          ) : (
-            "Login"
-          )}
+          Submit
         </Button>
       </FormControl>
     </AuthWrapper>
