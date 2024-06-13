@@ -12,7 +12,10 @@ const useStoreListing = () => {
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const { data: requestedStore, isFetching } =
-    useStoreRegistrationRequestQuery("");
+    useStoreRegistrationRequestQuery("",{
+      refetchOnReconnect: true,
+      refetchOnMountOrArgChange: true,
+    });
   const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
