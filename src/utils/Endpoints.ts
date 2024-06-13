@@ -8,6 +8,8 @@ const ENDPOINTS = {
   LOGOUT: "/logout",
   REFRESH_TOKEN: "/refresh-token",
   STORE_REGISTRATION_REQUEST: "/store-registration-request",
+  ACCEPT_STORE_REQUEST: "/accept-store-request",
+  REJECT_STORE_REQUEST: "/reject-store-request",
 };
 
 const BROWSER_ROUTE = {

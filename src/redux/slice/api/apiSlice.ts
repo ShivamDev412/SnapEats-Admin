@@ -20,8 +20,9 @@ export type QueryReturnValue<T = unknown, E = unknown, M = unknown> =
       data: T;
       meta?: M;
     };
+const baseUrl = `${import.meta.env.VITE_BASE_URL}/api/v1`;
 const baseQuery = fetchBaseQuery({
-  baseUrl: import.meta.env.VITE_BASE_URL,
+  baseUrl,
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState)?.auth.token;
@@ -64,6 +65,6 @@ const baseQueryWithReAuth = async (
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: baseQueryWithReAuth,
-  tagTypes: ["User", "Address"],
+  tagTypes: ["StoreRequest", ""],
   endpoints: () => ({}),
 });
