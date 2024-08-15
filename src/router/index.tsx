@@ -8,8 +8,10 @@ import { SocketProvider } from "@/providers/SocketContext";
 const LoginScreen = lazy(() => import("@/screens/Login"));
 const HomeScreen = lazy(() => import("@/screens/Home"));
 const StoreRequestsScreen = lazy(() => import("@/screens/StoreRequests"));
+const UsersScreen = lazy(() => import("@/screens/Users"));
+const StoresScreen = lazy(() => import("@/screens/Stores"));
 const Routers = () => {
-  const { LOGIN, DASHBOARD, STORE_REQUESTS } = BROWSER_ROUTE;
+  const { LOGIN, DASHBOARD, STORE_REQUESTS, USERS, STORES } = BROWSER_ROUTE;
   return (
     <SocketProvider>
       <BrowserRouter>
@@ -20,6 +22,8 @@ const Routers = () => {
           <Route element={<PrivateRoute />}>
             <Route path={DASHBOARD} element={<HomeScreen />} />
             <Route path={STORE_REQUESTS} element={<StoreRequestsScreen />} />
+            <Route path={USERS} element={<UsersScreen />} />
+            <Route path={STORES} element={<StoresScreen />} />
           </Route>
         </Routes>
       </BrowserRouter>
