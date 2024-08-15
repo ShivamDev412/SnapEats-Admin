@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 const MainWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { loading } = useSelector((state: RootState) => state.loading);
   return (
-    <div className="flex flex-col justify-between bg-zinc-900 h-screen text-zinc-100 font-poppins">
+    <div className="flex flex-col bg-zinc-900 min-h-screen text-zinc-100 font-poppins">
       {loading && (
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -18,7 +18,7 @@ const MainWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         </Backdrop>
       )}
       <Header />
-      <div className="flex h-full justify-between">
+      <div className="flex h-full justify-between flex-1">
         <Aside />
         <main className="flex-1 w-9/12 ml-10 mt-10">{children}</main>
       </div>

@@ -10,6 +10,8 @@ const ENDPOINTS = {
   STORE_REGISTRATION_REQUEST: "/store-registration-request",
   ACCEPT_STORE_REQUEST: "/accept-store-request",
   REJECT_STORE_REQUEST: "/reject-store-request",
+  USERS: "/users",
+  STORES: "/stores",
 };
 
 const BROWSER_ROUTE = {
@@ -17,6 +19,8 @@ const BROWSER_ROUTE = {
   LOGOUT: "/logout",
   STORE_REQUESTS: "/store-requests",
   DASHBOARD: "/",
+  USERS: "/users",
+  STORES: "/stores",
 };
 
 export { BASE_ROUTE, ENDPOINTS, BROWSER_ROUTE };

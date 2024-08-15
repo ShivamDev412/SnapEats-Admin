@@ -24,10 +24,44 @@ type AuthResponse<T = undefined> = T extends undefined
     }
   : {
       success: boolean;
-      data: T[];
+      data: T;
       message: string;
     };
-
+export type UserType = {
+  id: string;
+  name: string;
+  email: string;
+  countryCode: string;
+  phoneNumber: string;
+  emailVerified: boolean;
+  phoneNumberVerified: boolean;
+  storeId: string | null;
+};
+export type StoreTypeData = {
+  id: string;
+  name: string;
+  countryCode: string;
+  phoneNumber: string;
+  email: string;
+  phoneNumberVerified: boolean;
+  emailVerified: boolean;
+  user:{
+    id:string;
+    name:string;
+    email:string;
+    countryCode:string;
+    phoneNumber:string;
+  },
+  address: {
+    address: string;
+  };
+  status: "PENDING" | "APPROVED" | "REJECTED";
+};
+type UserResponse<T> = {
+  users?: T[];
+  stores?: T[];
+  totalCount: number;
+};
 export const adminApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     logout: builder.mutation<AuthResponse, string>({
@@ -36,7 +70,7 @@ export const adminApiSlice = apiSlice.injectEndpoints({
         method: "POST",
       }),
     }),
-    storeRegistrationRequest: builder.query<AuthResponse<StoreType>, string>({
+    storeRegistrationRequest: builder.query<AuthResponse<StoreType[]>, string>({
       query: () => ({
         url: `${BASE_ROUTE.ADMIN}${ENDPOINTS.STORE_REGISTRATION_REQUEST}`,
         method: "GET",
@@ -65,6 +99,20 @@ export const adminApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["StoreRequest"],
     }),
+    getUsers: builder.query<AuthResponse<UserResponse<UserType>>, number>({
+      query: (page) => ({
+        url: `${BASE_ROUTE.ADMIN}${ENDPOINTS.USERS}?page=${page}`,
+        method: "GET",
+      }),
+    }),
+    getStores: builder.query<AuthResponse<UserResponse<StoreTypeData>>, number>(
+      {
+        query: (page) => ({
+          url: `${BASE_ROUTE.ADMIN}${ENDPOINTS.STORES}?page=${page}`,
+          method: "GET",
+        }),
+      }
+    ),
   }),
 });
 export const {
@@ -72,4 +120,6 @@ export const {
   useStoreRegistrationRequestQuery,
   useAcceptStoreRegistrationRequestMutation,
   useRejectStoreRegistrationRequestMutation,
+  useGetUsersQuery,
+  useGetStoresQuery,
 } = adminApiSlice;

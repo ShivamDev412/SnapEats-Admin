@@ -21,8 +21,8 @@ const LinkItem: React.FC<ListType> = ({
       className="text-white flex gap-2 items-center hover:text-primary transition-all"
       to={link}
     >
-      <Icon className="h-6 w-6" />
-      <p>{title}</p>
+      <Icon className="h-8 w-8" />
+      <p className="xl:text-lg 2xl:text-xl">{title}</p>
       {title === "Store Requests" && storeRequestCount > 0 && (
         <span className="bg-primary text-white w-7 h-7 flex items-center justify-center rounded-full text-[12px] font-semibold">
           {storeRequestCount}
